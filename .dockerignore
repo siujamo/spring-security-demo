@@ -1,0 +1,6 @@
+.idea/
+.gradle/
+.vscode/
+build/
+HELP.md
+config/
