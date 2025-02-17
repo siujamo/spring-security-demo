@@ -28,9 +28,15 @@ repositories {
 }
 
 dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    testImplementation("org.springframework.security:spring-security-test")
+    runtimeOnly("org.postgresql:postgresql")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("com.mybatis-flex:mybatis-flex-spring-boot3-starter:1.10.7")
+    implementation("com.zaxxer:HikariCP")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
