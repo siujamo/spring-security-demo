@@ -35,6 +35,13 @@ dependencies {
     implementation("com.mybatis-flex:mybatis-flex-spring-boot3-starter:1.10.7")
     implementation("com.zaxxer:HikariCP")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("com.auth0:java-jwt:4.4.0")
+    implementation(platform("com.onixbyte:devkit-bom:1.8.0"))
+    implementation("com.onixbyte:guid")
+    implementation("com.onixbyte:simple-jwt-facade")
+    implementation("com.onixbyte:simple-jwt-authzero")
+    implementation("com.onixbyte:simple-jwt-spring-boot-starter")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")

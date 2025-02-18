@@ -2,11 +2,12 @@ package io.github.siujamo.playground.boot.security.token;
 
 import io.github.siujamo.playground.boot.entity.User;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
-public class UsernamePasswordToken implements Authentication {
+public class UsernamePasswordToken implements Authentication, CredentialsContainer {
 
     private boolean authenticated;
 
@@ -97,5 +98,10 @@ public class UsernamePasswordToken implements Authentication {
         token.setAuthenticated(false);
 
         return token;
+    }
+
+    @Override
+    public void eraseCredentials() {
+        details.setPassword("");
     }
 }

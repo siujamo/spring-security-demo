@@ -8,6 +8,10 @@ public record BizExceptionResponse(
         LocalDateTime timestamp
 ) {
 
+    public static BizExceptionResponseBuilder builder() {
+        return new BizExceptionResponseBuilder();
+    }
+
     public static class BizExceptionResponseBuilder {
         private String message;
         private LocalDateTime timestamp;

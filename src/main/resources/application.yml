@@ -1,0 +1,25 @@
+server:
+  port: 8081
+
+logging:
+  pattern:
+    dateformat: dd MMM yyyy HH:mm:ss
+
+spring:
+  application:
+    name: spring-boot-playground
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: 123456
+    url: jdbc:postgresql://192.168.31.207:5432/playground
+
+mybatis-flex:
+  configuration:
+    map-underscore-to-camel-case: true
+
+onixbyte:
+  simple-jwt:
+    algorithm: hs256
+    issuer: siujamo
+    secret: tJQiZgvYp6NMiey-ru.9w@pR-g2g6.-8

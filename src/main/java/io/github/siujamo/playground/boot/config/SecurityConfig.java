@@ -1,5 +1,6 @@
 package io.github.siujamo.playground.boot.config;
 
+import io.github.siujamo.playground.boot.filter.JsonWebTokenAuthenticationFilter;
 import io.github.siujamo.playground.boot.security.provider.UsernamePasswordAuthenticationProvider;
 import io.github.siujamo.playground.boot.service.UserService;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfigurationSource;
 
 @Configuration
@@ -36,7 +38,8 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain httpSecurity(HttpSecurity httpSecurity,
-                                            CorsConfigurationSource corsConfigurationSource) throws Exception {
+                                            CorsConfigurationSource corsConfigurationSource,
+                                            JsonWebTokenAuthenticationFilter jsonWebTokenAuthenticationFilter) throws Exception {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors((configurer) -> configurer.configurationSource(corsConfigurationSource))
@@ -44,8 +47,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests((configurer) -> configurer
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/error", "/error/**").permitAll()
+                        .requestMatchers("/playground/**").permitAll()
                         .anyRequest().authenticated()
                 )
+                .addFilterBefore(jsonWebTokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 

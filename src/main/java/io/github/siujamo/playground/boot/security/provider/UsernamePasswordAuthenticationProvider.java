@@ -40,6 +40,8 @@ public class UsernamePasswordAuthenticationProvider implements AuthenticationPro
             var userDetails = userService.loadUserByUsername(usernamePasswordToken.getUsername());
             if (passwordEncoder.matches(usernamePasswordToken.getPassword(), userDetails.getPassword())) {
                 usernamePasswordToken.setAuthenticated(true);
+                usernamePasswordToken.setDetails(userDetails);
+                usernamePasswordToken.eraseCredentials();
                 return usernamePasswordToken;
             }
 
